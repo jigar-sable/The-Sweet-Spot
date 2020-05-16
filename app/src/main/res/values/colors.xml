@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#ce0000</color>
     <color name="colorAccent">#ffffff</color>
     <color name="btnRed">#9f0000</color>
+    <color name="btnTextDisable">#50ffffff</color>
 
 </resources>
