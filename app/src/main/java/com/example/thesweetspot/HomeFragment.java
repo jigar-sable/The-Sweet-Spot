@@ -1,7 +1,9 @@
 package com.example.thesweetspot;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +44,12 @@ public class HomeFragment extends Fragment {
     final private long DELAY_TIME = 3000;
     final private long PERIOD_TIME = 3000;
     //////////banner slider test
+
+
+    //////////Strip ad layout
+    private ImageView stripAdImage;
+    private ConstraintLayout stripAdContainer;
+    //////////Strip ad layout
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -133,6 +142,15 @@ public class HomeFragment extends Fragment {
         });
 
         //////////banner slider test
+
+        //////////Strip ad layout
+        stripAdImage = view.findViewById(R.id.strip_ad_image);
+        stripAdContainer = view.findViewById(R.id.strip_ad_container);
+
+        stripAdImage.setImageResource(R.drawable.stripad);
+        stripAdContainer.setBackgroundColor(Color.parseColor("#000000"));
+
+        //////////Strip ad layout
 
         return view;
     }
