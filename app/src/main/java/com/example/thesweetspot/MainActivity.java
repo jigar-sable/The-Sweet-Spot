@@ -34,15 +34,6 @@ implements NavigationView.OnNavigationItemSelectedListener {
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -51,6 +42,8 @@ implements NavigationView.OnNavigationItemSelectedListener {
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        navigationView.getMenu().getItem(0).setCheckable(true);
     }
 
     @Override
@@ -89,20 +82,19 @@ implements NavigationView.OnNavigationItemSelectedListener {
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+        if (id == R.id.nav_my_sweet_spot) {
 
-        if(id == R.id.nav_my_orders){
+        } else if (id == R.id.nav_my_orders) {
 
-        }
-        else if (id == R.id.nav_my_rewards){
+        } else if (id == R.id.nav_my_rewards) {
 
-        }
-        else if ( id == R.id.nav_my_cart){
+        } else if (id == R.id.nav_my_cart) {
 
-        }
-        else if (id == R.id.nav_my_wishlist){
+        } else if (id == R.id.nav_my_wishlist) {
 
-        }
-        else if (id == R.id.nav_my_account){
+        } else if (id == R.id.nav_my_account) {
+
+        } else if (id == R.id.nav_signout) {
 
         }
 
