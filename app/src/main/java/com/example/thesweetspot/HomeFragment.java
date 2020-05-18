@@ -5,13 +5,19 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -26,6 +32,15 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView categoryRecyclerView;
     private CategoryAdapter categoryAdapter;
+
+    //////////banner slider test
+    private ViewPager bannerSliderViewPager;
+    private List<SliderModel> sliderModelList;
+    private int currentPage = 2;
+    private Timer timer;
+    final private long DELAY_TIME = 3000;
+    final private long PERIOD_TIME = 3000;
+    //////////banner slider test
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +69,108 @@ public class HomeFragment extends Fragment {
         categoryRecyclerView.setAdapter(categoryAdapter);
         categoryAdapter.notifyDataSetChanged();
 
+        //////////banner slider test
+
+        bannerSliderViewPager = view.findViewById(R.id.banner_slider_viewPager);
+
+        sliderModelList = new ArrayList<SliderModel>();
+
+        sliderModelList.add(new SliderModel(R.drawable.account_icon));
+        sliderModelList.add(new SliderModel(R.drawable.gift_icon));
+
+        sliderModelList.add(new SliderModel(R.mipmap.logo));
+        sliderModelList.add(new SliderModel(R.drawable.mail_red));
+        sliderModelList.add(new SliderModel(R.drawable.mail_green));
+        sliderModelList.add(new SliderModel(R.drawable.cart_icon));
+        sliderModelList.add(new SliderModel(R.drawable.home_icon));
+        sliderModelList.add(new SliderModel(R.drawable.account_icon));
+        sliderModelList.add(new SliderModel(R.drawable.gift_icon));
+
+        sliderModelList.add(new SliderModel(R.mipmap.logo));
+        sliderModelList.add(new SliderModel(R.mipmap.ic_clear_black_18dp));
+
+        SliderAdapter sliderAdapter = new SliderAdapter(sliderModelList);
+        bannerSliderViewPager.setAdapter(sliderAdapter);
+        bannerSliderViewPager.setClipToPadding(false);
+        bannerSliderViewPager.setPageMargin(20);
+
+        ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                currentPage = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if (state == ViewPager.SCROLL_STATE_IDLE) {
+                    pageLooper();
+                }
+            }
+        };
+
+        bannerSliderViewPager.addOnPageChangeListener(onPageChangeListener);
+
+        startBannerSlideshow();
+        bannerSliderViewPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                pageLooper();
+                stopBannerSlideshow();
+
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    startBannerSlideshow();
+                }
+                return false;
+            }
+        });
+
+        //////////banner slider test
+
         return view;
     }
+
+    //////////banner slider test
+    private void pageLooper() {
+        if (currentPage == sliderModelList.size() - 2) {
+            currentPage = 2;
+            bannerSliderViewPager.setCurrentItem(currentPage, false);
+        }
+        if (currentPage == 1) {
+            currentPage = sliderModelList.size() - 3;
+            bannerSliderViewPager.setCurrentItem(currentPage, false);
+        }
+    }
+
+    private void startBannerSlideshow() {
+        final Handler handler = new Handler();
+        final Runnable update = new Runnable() {
+            @Override
+            public void run() {
+                if (currentPage >= sliderModelList.size()) {
+                    currentPage = 1;
+                }
+                bannerSliderViewPager.setCurrentItem(currentPage++, true);
+            }
+        };
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(update);
+            }
+        }, DELAY_TIME, PERIOD_TIME);
+    }
+
+    private void stopBannerSlideshow() {
+        timer.cancel();
+    }
+    //////////banner slider test
+
+
 }
