@@ -1,5 +1,6 @@
 package com.example.thesweetspot;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,10 @@ public class GridProductLayoutAdapter extends BaseAdapter {
 
         View view ;
         if(convertView == null){
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_product_layout, null);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.horizontal_scroll_item_layout, null);
+            view.setElevation(0);
+            view.setBackgroundColor(Color.parseColor("#ffffff"));
+
             ImageView productImage = view.findViewById(R.id.h_s_product_image);
             TextView productTitle = view.findViewById(R.id.h_s_product_title);
             TextView productDescription = view.findViewById(R.id.h_s_product_description);
