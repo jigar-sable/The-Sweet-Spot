@@ -75,24 +75,26 @@ public class HomeFragment extends Fragment {
 
         sliderModelList = new ArrayList<SliderModel>();
 
-        sliderModelList.add(new SliderModel(R.drawable.account_icon));
-        sliderModelList.add(new SliderModel(R.drawable.gift_icon));
+        sliderModelList.add(new SliderModel(R.drawable.account_icon,"#077ae4"));
+        sliderModelList.add(new SliderModel(R.drawable.gift_icon,"#077ae4"));
+        sliderModelList.add(new SliderModel(R.mipmap.logo,"#077ae4"));
 
-        sliderModelList.add(new SliderModel(R.mipmap.logo));
-        sliderModelList.add(new SliderModel(R.drawable.mail_red));
-        sliderModelList.add(new SliderModel(R.drawable.mail_green));
-        sliderModelList.add(new SliderModel(R.drawable.cart_icon));
-        sliderModelList.add(new SliderModel(R.drawable.home_icon));
-        sliderModelList.add(new SliderModel(R.drawable.account_icon));
-        sliderModelList.add(new SliderModel(R.drawable.gift_icon));
+        sliderModelList.add(new SliderModel(R.drawable.mail_red,"#077ae4"));
+        sliderModelList.add(new SliderModel(R.drawable.mail_green,"#077ae4"));
+        sliderModelList.add(new SliderModel(R.drawable.cart_icon,"#077ae4"));
+        sliderModelList.add(new SliderModel(R.drawable.home_icon,"#077ae4"));
+        sliderModelList.add(new SliderModel(R.drawable.banner,"#077ae4"));
 
-        sliderModelList.add(new SliderModel(R.mipmap.logo));
-        sliderModelList.add(new SliderModel(R.mipmap.ic_clear_black_18dp));
+        sliderModelList.add(new SliderModel(R.drawable.gift_icon,"#077ae4"));
+        sliderModelList.add(new SliderModel(R.mipmap.logo,"#077ae4"));
+        sliderModelList.add(new SliderModel(R.mipmap.ic_clear_black_18dp,"#077ae4"));
 
         SliderAdapter sliderAdapter = new SliderAdapter(sliderModelList);
         bannerSliderViewPager.setAdapter(sliderAdapter);
         bannerSliderViewPager.setClipToPadding(false);
         bannerSliderViewPager.setPageMargin(20);
+
+        bannerSliderViewPager.setCurrentItem(currentPage);
 
         ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
 
