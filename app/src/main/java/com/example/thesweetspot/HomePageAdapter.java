@@ -11,8 +11,6 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.thesweetspot.R;
-
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -69,7 +67,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 return new HorizontalProductViewHolder(horizontalProductView);
 
             case HomePageModel.GRID_PRODUCT_VIEW:
-                View gridProductView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.horizontal_scroll_layout, viewGroup, false);
+                View gridProductView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.grid_product_layout, viewGroup, false);
                 return new GridProductViewHolder(gridProductView);
             default:
                 return null;
