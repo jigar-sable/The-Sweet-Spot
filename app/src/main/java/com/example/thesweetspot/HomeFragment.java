@@ -198,6 +198,13 @@ public class HomeFragment extends Fragment {
         gridView.setAdapter(new GridProductLayoutAdapter(horizontalProductScrollModelList));
         //////////Grid Product Layout
 
+        //////////testing recycler view
+        RecyclerView testing = view.findViewById(R.id.testing);
+        LinearLayoutManager testingLayoutManager = new LinearLayoutManager(getContext());
+        testingLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        testing.setLayoutManager(testingLayoutManager);
+        //////////testing recycler view
+
         return view;
     }
 
