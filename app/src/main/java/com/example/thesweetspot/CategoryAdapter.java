@@ -1,5 +1,6 @@
 package com.example.thesweetspot;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         String icon = categoryModelList.get(position).getCategoryIconLink();
         String name = categoryModelList.get(position).getCategoryName();
-        viewHolder.setCategoryName(name);
+        viewHolder.setCategory(name,position);
 
     }
 
@@ -55,8 +56,20 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         }
 
-        private void setCategoryName(String name) {
+        private void setCategory(final String name, final int position) {
+
             categoryName.setText(name);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(position != 0) {
+                        Intent categoryIntent = new Intent(itemView.getContext(), CategoryActivity.class);
+                        categoryIntent.putExtra("CategoryName", name);
+                        itemView.getContext().startActivity(categoryIntent);
+                    }
+                }
+            });
         }
     }
 }
