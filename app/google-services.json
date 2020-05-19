@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1007773861579",
+    "firebase_url": "https://the-sweet-spot-ca658.firebaseio.com",
+    "project_id": "the-sweet-spot-ca658",
+    "storage_bucket": "the-sweet-spot-ca658.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007773861579:android:31ac6c294bfc5c155abd4e",
+        "android_client_info": {
+          "package_name": "com.example.thesweetspot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1007773861579-lk1t7p97ohojphcmd6d4susbcpntlg4r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATEvn86vrwcG0Li1vHwy8tCRkN1FGMjVs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1007773861579-lk1t7p97ohojphcmd6d4susbcpntlg4r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -6,12 +6,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
+import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.thesweetspot.R;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
@@ -35,6 +39,12 @@ public class HomePageAdapter extends RecyclerView.Adapter {
 
             case 1:
                 return HomePageModel.STRIP_AD_BANNER;
+
+            case 2:
+                return HomePageModel.HORIZONTAL_PRODUCT_VIEW;
+
+            case 3:
+                return HomePageModel.GRID_PRODUCT_VIEW;
             default:
                 return -1;
         }
@@ -53,6 +63,14 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             case HomePageModel.STRIP_AD_BANNER:
                 View stripAdView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.strip_ad_layout, viewGroup, false);
                 return new StripAdBannerViewHolder(stripAdView);
+
+            case HomePageModel.HORIZONTAL_PRODUCT_VIEW:
+                View horizontalProductView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.horizontal_scroll_layout, viewGroup, false);
+                return new HorizontalProductViewHolder(horizontalProductView);
+
+            case HomePageModel.GRID_PRODUCT_VIEW:
+                View gridProductView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.horizontal_scroll_layout, viewGroup, false);
+                return new GridProductViewHolder(gridProductView);
             default:
                 return null;
         }
@@ -70,9 +88,22 @@ public class HomePageAdapter extends RecyclerView.Adapter {
 
             case HomePageModel.STRIP_AD_BANNER:
                 int resource = homePageModelList.get(position).getResource();
-                String color = homePageModelList.get(position).getBackgrounColour();
+                String color = homePageModelList.get(position).getBackgroundColour();
                 ((StripAdBannerViewHolder)viewHolder).setStripAd(resource,color);
                 break;
+
+            case HomePageModel.HORIZONTAL_PRODUCT_VIEW:
+                String horizontalLayoutTitle = homePageModelList.get(position).getTitle();
+                List<HorizontalProductScrollModel> horizontalProductScrollModelList = homePageModelList.get(position).getHorizontalProductScrollModelList();
+                ((HorizontalProductViewHolder)viewHolder).setHorizontalProductLayout(horizontalProductScrollModelList,horizontalLayoutTitle);
+                break;
+
+            case HomePageModel.GRID_PRODUCT_VIEW:
+                String gridLayoutTitle = homePageModelList.get(position).getTitle();
+                List<HorizontalProductScrollModel> gridProductScrollModelList = homePageModelList.get(position).getHorizontalProductScrollModelList();
+                ((GridProductViewHolder)viewHolder).setGridProductLayout(gridProductScrollModelList,gridLayoutTitle);
+                break;
+
             default:
                 return;
         }
@@ -196,6 +227,58 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         private void setStripAd(int resource, String color) {
             stripAdImage.setImageResource(resource);
             stripAdContainer.setBackgroundColor(Color.parseColor(color));
+        }
+    }
+
+    public class HorizontalProductViewHolder extends RecyclerView.ViewHolder{
+
+        private TextView horizontalLayoutTitle;
+        private Button horizontalLayoutViewAllBtn;
+        private RecyclerView horizontalRecyclerview;
+
+        public HorizontalProductViewHolder(@NonNull View itemView) {
+
+            super(itemView);
+            horizontalLayoutTitle = itemView.findViewById(R.id.horizontal_scroll_layout_title);
+            horizontalRecyclerview = itemView.findViewById(R.id.horizontal_scroll_layout_recyclerView);
+            horizontalLayoutViewAllBtn = itemView.findViewById(R.id.horizontal_scroll_view_all_button);
+        }
+
+        private void setHorizontalProductLayout(List<HorizontalProductScrollModel> horizontalProductScrollModelList, String title){
+
+            horizontalLayoutTitle.setText(title);
+
+            if(horizontalProductScrollModelList.size()>8){
+                horizontalLayoutViewAllBtn.setVisibility(View.VISIBLE);
+            }else{
+                horizontalLayoutViewAllBtn.setVisibility(View.INVISIBLE);
+            }
+
+            HorizontalProductScrollAdapter horizontalProductScrollAdapter = new HorizontalProductScrollAdapter(horizontalProductScrollModelList);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(itemView.getContext());
+            linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+
+            horizontalRecyclerview.setLayoutManager(linearLayoutManager);
+            horizontalRecyclerview.setAdapter(horizontalProductScrollAdapter);
+            horizontalProductScrollAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public class GridProductViewHolder extends RecyclerView.ViewHolder{
+        private TextView gridLayoutTitle;
+        private Button gridLayoutViewAllBtn;
+        private GridView gridView;
+
+        public GridProductViewHolder(@NonNull View itemView) {
+            super(itemView);
+            gridLayoutTitle = itemView.findViewById(R.id.grid_product_layout_title);
+            gridLayoutViewAllBtn = itemView.findViewById(R.id.grid_product_layout_viewall_button);
+            gridView = itemView.findViewById(R.id.grid_product_layout_grid_view);
+        }
+
+        private void setGridProductLayout(List<HorizontalProductScrollModel> horizontalProductScrollModelList, String title){
+            gridView.setAdapter(new GridProductLayoutAdapter(horizontalProductScrollModelList));
+            gridLayoutTitle.setText(title);
         }
     }
 }
