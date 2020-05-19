@@ -94,7 +94,7 @@ public class HomeFragment extends Fragment {
 
         sliderModelList = new ArrayList<SliderModel>();
 
-        sliderModelList.add(new SliderModel(R.drawable.account_icon,"#077ae4"));
+        sliderModelList.add(new SliderModel(R.drawable.banner,"#077ae4"));
         sliderModelList.add(new SliderModel(R.drawable.gift_icon,"#077ae4"));
         sliderModelList.add(new SliderModel(R.mipmap.logo,"#077ae4"));
 
@@ -106,7 +106,7 @@ public class HomeFragment extends Fragment {
 
         sliderModelList.add(new SliderModel(R.drawable.gift_icon,"#077ae4"));
         sliderModelList.add(new SliderModel(R.mipmap.logo,"#077ae4"));
-        sliderModelList.add(new SliderModel(R.mipmap.ic_clear_black_18dp,"#077ae4"));
+        sliderModelList.add(new SliderModel(R.drawable.mail_red,"#077ae4"));
 
         SliderAdapter sliderAdapter = new SliderAdapter(sliderModelList);
         bannerSliderViewPager.setAdapter(sliderAdapter);
