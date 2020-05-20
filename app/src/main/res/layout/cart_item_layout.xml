@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:elevation="3dp"
-    android:background="@color/colorAccent"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/colorAccent"
+    android:elevation="3dp">
 
     <ImageView
         android:id="@+id/product_image"
@@ -25,8 +24,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Pixel 2 BLACK"
-        android:textSize="16sp"
         android:textColor="#000000"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/product_image"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,8 +43,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2 coupons available"
-        android:textSize="12sp"
         android:textColor="#8000ff"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/free_coupon_icon"
         app:layout_constraintTop_toBottomOf="@+id/product_title" />
 
@@ -56,8 +55,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="Rs.4999/-"
-        android:textSize="22sp"
         android:textColor="#000000"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_free_coupon" />
@@ -87,8 +86,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="Applied Offers"
-        android:textSize="12sp"
         android:textColor="@color/successGreen"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_price" />
 
@@ -109,14 +108,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Qty : 1"
-        android:textColor="#000000"
         android:background="@drawable/border_background"
         android:backgroundTint="#000000"
-        android:padding="3dp"
+        android:drawableEnd="@drawable/down_icon"
         android:drawablePadding="8dp"
         android:drawableTint="#000000"
-        android:drawableEnd="@drawable/down_icon"
+        android:padding="3dp"
+        android:text="Qty : 1"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/coupons_applied"
         app:layout_constraintStart_toEndOf="@+id/product_image"
         app:layout_constraintTop_toBottomOf="@+id/cutted_price" />
@@ -158,20 +157,31 @@
         android:id="@+id/remove_item_button"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
         android:background="@color/colorAccent"
         android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/coupon_redemption_layout">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Remove Item"
-            android:gravity="center"
+            android:drawableStart="@drawable/delete_icon"
             android:drawablePadding="4dp"
-            android:drawableStart="@drawable/delete_icon"/>
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="Remove Item" />
     </LinearLayout>
+
+    <View
+        android:id="@+id/divider11"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="4dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/remove_item_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

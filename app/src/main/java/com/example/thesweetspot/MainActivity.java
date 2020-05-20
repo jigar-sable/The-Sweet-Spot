@@ -27,7 +27,12 @@ public class MainActivity extends AppCompatActivity
 implements NavigationView.OnNavigationItemSelectedListener {
 
 
+    private static final int HOME_FRAGMENT = 0;
+    private static final int CART_FRAGMENT = 1;
+
+    private NavigationView navigationView;
     private FrameLayout frameLayout;
+    private static int currentFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,11 +48,11 @@ implements NavigationView.OnNavigationItemSelectedListener {
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         frameLayout = findViewById(R.id.main_frame_layout);
-        setFragment(new HomeFragment());
+        setFragment(new HomeFragment(),HOME_FRAGMENT);
 
         navigationView.setCheckedItem(R.id.nav_my_sweet_spot);
 
@@ -66,7 +71,9 @@ implements NavigationView.OnNavigationItemSelectedListener {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        if(currentFragment == HOME_FRAGMENT){
+            getMenuInflater().inflate(R.menu.main, menu);
+        }
         return true;
     }
 
@@ -80,9 +87,17 @@ implements NavigationView.OnNavigationItemSelectedListener {
         }else if(id == R.id.main_notification_icon){
             return true;
         }else if(id == R.id.main_cart_icon){
+            myCart();
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void myCart() {
+        invalidateOptionsMenu();
+        setFragment(new MyCartFragment(), CART_FRAGMENT);
+        navigationView.setCheckedItem(R.id.nav_my_cart);
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -90,13 +105,13 @@ implements NavigationView.OnNavigationItemSelectedListener {
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.nav_my_sweet_spot) {
-
+            setFragment(new HomeFragment(),HOME_FRAGMENT);
         } else if (id == R.id.nav_my_orders) {
 
         } else if (id == R.id.nav_my_rewards) {
 
         } else if (id == R.id.nav_my_cart) {
-
+            myCart();
         } else if (id == R.id.nav_my_wishlist) {
 
         } else if (id == R.id.nav_my_account) {
@@ -110,7 +125,8 @@ implements NavigationView.OnNavigationItemSelectedListener {
         return true;
     }
 
-    private void setFragment(Fragment fragment) {
+    private void setFragment(Fragment fragment, int fragmentNo) {
+        currentFragment = fragmentNo;
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(frameLayout.getId(), fragment);
         fragmentTransaction.commit();
