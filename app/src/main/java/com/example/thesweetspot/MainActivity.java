@@ -97,7 +97,6 @@ implements NavigationView.OnNavigationItemSelectedListener {
         invalidateOptionsMenu();
         setFragment(new MyCartFragment(), CART_FRAGMENT);
         navigationView.setCheckedItem(R.id.nav_my_cart);
-
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
