@@ -40,7 +40,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productImagesViewPager = findViewById(R.id.product_images_viewPager);
         viewPagerIndicator = findViewById(R.id.viewPager_indicator);
         addToWishListBtn = findViewById(R.id.add_to_wishlist_button);
-        productImagesViewPager = findViewById(R.id.product_details_viewPager);
+        productDetailsViewPager = findViewById(R.id.product_details_viewPager);
         productDetailsTabLayout = findViewById(R.id.product_details_tabLayout);
 
         List<Integer> productImages = new ArrayList<>();
