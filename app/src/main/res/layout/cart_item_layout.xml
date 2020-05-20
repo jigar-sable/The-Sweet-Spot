@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
     android:background="@color/colorAccent"
     android:elevation="3dp">
 
@@ -34,8 +35,9 @@
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:tint="#8000ff"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_free_coupon"
         app:layout_constraintStart_toStartOf="@+id/product_title"
-        app:layout_constraintTop_toBottomOf="@+id/product_title"
+        app:layout_constraintTop_toTopOf="@+id/tv_free_coupon"
         app:srcCompat="@drawable/coupon_icon" />
 
     <TextView
@@ -67,6 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="Rs.5999/-"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/product_price"
         app:layout_constraintEnd_toStartOf="@+id/product_price" />
 
@@ -173,15 +176,5 @@
             android:gravity="center"
             android:text="Remove Item" />
     </LinearLayout>
-
-    <View
-        android:id="@+id/divider11"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="4dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/remove_item_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
