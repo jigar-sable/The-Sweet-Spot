@@ -34,7 +34,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
     private NavigationView navigationView;
     private FrameLayout frameLayout;
     private ImageView actionBarLogo;
-    private static int currentFragment;
+    private static int currentFragment=-1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +43,6 @@ implements NavigationView.OnNavigationItemSelectedListener {
         Toolbar toolbar = findViewById(R.id.toolbar);
         actionBarLogo = findViewById(R.id.action_bar_logo);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -76,6 +73,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         if(currentFragment == HOME_FRAGMENT){
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
             getMenuInflater().inflate(R.menu.main, menu);
         }
         return true;
@@ -111,7 +109,6 @@ implements NavigationView.OnNavigationItemSelectedListener {
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.nav_my_sweet_spot) {
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
             actionBarLogo.setVisibility(View.VISIBLE);
             invalidateOptionsMenu();
             setFragment(new HomeFragment(),HOME_FRAGMENT);
@@ -139,11 +136,6 @@ implements NavigationView.OnNavigationItemSelectedListener {
             currentFragment = fragmentNo;
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
-            fragmentTransaction.replace(frameLayout.getId(), fragment);
-            fragmentTransaction.commit();
-        }else{
-            currentFragment = fragmentNo;
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(frameLayout.getId(), fragment);
             fragmentTransaction.commit();
         }
